@@ -53,7 +53,7 @@
 	}
 	$.cookielegal.acceptTerms = function(){
 		$.cookielegal.hideMsg();
-		//$.cookielegal.setCookie($.cookielegal.opc.cookiename,'accepted',365)
+		$.cookielegal.setCookie($.cookielegal.opc.cookiename,'accepted',365)
 	}
 	$.cookielegal.declineTerms = function(){
 		$.cookielegal.hideMsg();
