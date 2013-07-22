@@ -14,6 +14,7 @@
 	$.cookielegal.opc_default = {
 		cookiename:'cookielegal',
 		timeshow:10000,
+		privacy_url:false,
 		texts:{
 			disclaimer:'Utilizamos cookies propias y de terceros para mejorar nuestros servicios y poder realizar mediciones de navegaci&oacute;n dentro de nuestro site.<br>Si contin&uacute;a navegando, consideramos que acepta su uso.'
 		}
@@ -26,6 +27,7 @@
 		out+='.cookielegalbut:hover{background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#dfdfdf", endColorstr="#ededed");background-color:#dfdfdf;}';
 		out+='.cookielegalbut:active {position:relative;top:1px;}';
 		out+='.marg-left{margin-left:30px;}';
+		out+='.cont u{color:#fff;text-decoration:underline;}'
 		out+='</style>';
 		return out;
 	}
@@ -34,6 +36,9 @@
 		out+='<div class="cont">';
 		out+='<span class="marg-left">';
 		out+=$.cookielegal.opc.texts.disclaimer;
+		if($.cookielegal.opc_default.privacy_url){
+			out+=' <a href="'+$.cookielegal.opc_default.privacy_url+'"><u>Pol&iacute;tica de cookies</u></a>'
+		}
 		out+='</span>';
 		out+='<br>';
 		out+='<span class="marg-left">';
