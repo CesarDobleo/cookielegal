@@ -4,7 +4,7 @@
 		if($.cookielegal.getCookie($.cookielegal.opc.cookiename)!='accepted'){
 			$('body').prepend($.cookielegal.css());
 			$('body').prepend($.cookielegal.container());
-			setTimeout("$.cookielegal.hideMsg();", $.cookielegal.opc.timeshow);
+			setTimeout("jQuery.cookielegal.hideMsg();", $.cookielegal.opc.timeshow);
 		} else {
 			$.cookielegal.setCookie($.cookielegal.opc.cookiename,'accepted',365)
 		}
@@ -42,10 +42,10 @@
 		out+='</span>';
 		out+='<br>';
 		out+='<span class="marg-left">';
-		out+='<a href="#" onclick="$.cookielegal.acceptTerms();" class="cookielegalbut">Aceptar</a>';
+		out+='<a href="#" onclick="jQuery.cookielegal.acceptTerms();" class="cookielegalbut">Aceptar</a>';
 		out+='</span>';
 		out+='<span class="marg-left">';
-		out+='<a href="#" onclick="$.cookielegal.declineTerms();" class="cookielegalbut">Cerrar</a>';
+		out+='<a href="#" onclick="jQuery.cookielegal.declineTerms();" class="cookielegalbut">Cerrar</a>';
 		out+='</span>';
 		out+='</div>';
 		out+='</div>';
@@ -88,6 +88,6 @@
 	}
 })(jQuery);
 
-$(document).ready(function(){
-	$.cookielegal();
+jQuery(document).ready(function(){
+	jQuery.cookielegal();
 });
