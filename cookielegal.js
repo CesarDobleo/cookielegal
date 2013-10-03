@@ -4,6 +4,9 @@
 		if($.cookielegal.getCookie($.cookielegal.opc.cookiename)!='accepted'){
 			$('body').prepend($.cookielegal.css());
 			$('body').prepend($.cookielegal.container());
+			if(!$.cookielegal.opc.overlay){
+				$('.cookielegal').slideDown(200);
+			}
 			setTimeout("jQuery.cookielegal.hideMsg();", $.cookielegal.opc.timeshow);
 		} else {
 			$.cookielegal.setCookie($.cookielegal.opc.cookiename,'accepted',365)
@@ -12,6 +15,9 @@
 	$.cookielegal.opc;
 	
 	$.cookielegal.opc_default = {
+		background:'rgba(0,0,0,0.7)',
+		color:'#fff',
+		overlay:true,
 		cookiename:'cookielegal',
 		timeshow:10000,
 		privacy_url:false,
@@ -21,7 +27,7 @@
 	};
 	$.cookielegal.css = function(){
 		var out = '<style>';
-		out+='.cookielegal{width:100%;position:fixed;top:0px;background-color:rgba(0,0,0,0.7);color:#fff;z-index:999999;}'
+		out+='.cookielegal{width:100%;position:'+(($.cookielegal.opc.overlay)?'fixed':'relative')+';top:0px;background-color:'+$.cookielegal.opc.background+';color:'+$.cookielegal.opc.color+';z-index:999999;}'
 		out+='.cookielegal > .cont{padding:25px 20px;font-family:sans-serif;font-size:12px;text-align:center;}';
 		out+='.cookielegalbut{-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;box-shadow:inset 0px 1px 0px 0px #ffffff;background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ededed", endColorstr="#dfdfdf");background-color:#ededed;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;border:1px solid #dcdcdc;display:inline-block;color:#777777 !important;font-family:arial;font-size:12px;font-weight:bold;padding:6px 18px;text-decoration:none;text-shadow:1px 1px 0px #ffffff;}';
 		out+='.cookielegalbut:hover{background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#dfdfdf", endColorstr="#ededed");background-color:#dfdfdf;}';
@@ -32,7 +38,7 @@
 		return out;
 	}
 	$.cookielegal.container = function(){
-		var out = '<div class="cookielegal">';
+		var out = '<div class="cookielegal" '+((!$.cookielegal.opc.overlay)?'style="display:none"':'')+'>';
 		out+='<div class="cont">';
 		out+='<span class="marg-left">';
 		out+=$.cookielegal.opc.texts.disclaimer;
@@ -60,7 +66,11 @@
 	}
 	
 	$.cookielegal.hideMsg = function(){
-		$('.cookielegal').fadeOut(200);
+		if($.cookielegal.opc.overlay){
+			$('.cookielegal').fadeOut(200);
+		} else {
+			$('.cookielegal').slideUp(200);
+		}
 	}
 	$.cookielegal.setCookie = function(c_name,value,exdays){
 		var exdate=new Date();
